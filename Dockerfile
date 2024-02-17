@@ -20,6 +20,8 @@ WORKDIR /app
 # Copy only the relevant build files and not all the files from the working directory
 COPY --from=builder /app/dist ./dist
 
+RUN npm install express
+
 # Copy server file
 COPY server.cjs .
 
