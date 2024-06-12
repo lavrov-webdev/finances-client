@@ -1,6 +1,6 @@
 server {
     listen ${PORT};
-    server_name bbabrjced7868pqsc83u.containers.yandexcloud.net;
+    server_name localhost;
 
     root /usr/share/nginx/html;
     index index.html;

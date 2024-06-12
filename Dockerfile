@@ -13,9 +13,14 @@ RUN pnpm build
 
 FROM nginx:alpine
 
+RUN apk --no-cache add gettext
+
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d/
+COPY nginx/nginx.conf.template /etc/nginx/conf.d/nginx.conf.template
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
