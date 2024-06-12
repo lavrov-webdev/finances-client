@@ -1,4 +1,3 @@
-# Use NodeJS base image
 FROM node:18-alpine AS builder
 
 WORKDIR /app
@@ -12,18 +11,11 @@ COPY . .
 
 RUN pnpm build
 
-# Stage 2: Run
-FROM node:18-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/
 
-# Copy only the relevant build files and not all the files from the working directory
-COPY --from=builder /app/dist ./dist
+COPY --from=build /app/build /usr/share/nginx/html
 
-RUN npm install express
-
-# Copy server file
-COPY server.cjs .
-
-# Start the server
-CMD [ "node", "server.cjs" ]
+CMD ["nginx", "-g", "daemon off;"]
