@@ -1,18 +1,22 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import App from '../App'
-import { Component } from '@modules/mod'
+import { Aside } from "@components/Aside";
+import { createRootRoute } from "@tanstack/react-router";
+import React, { Suspense } from "react";
+
+const TanStackRouterDevtools = process.env.NODE_ENV === "production"
+  ? () => null
+  : React.lazy(() =>
+    import("@tanstack/router-devtools").then((res) => ({
+      default: res.TanStackRouterDevtools,
+    }))
+  );
 
 export const Route = createRootRoute({
-    component: () => (
-        <>
-            <div className="p-2 flex gap-2">
-                <App />
-                <Component />
-            </div>
-            <hr />
-            <Outlet />
-            <TanStackRouterDevtools />
-        </>
-    ),
-})
+  component: () =>  (
+    <>
+      <Aside />
+      <Suspense>
+        <TanStackRouterDevtools position="bottom-right"/>
+      </Suspense>
+    </>
+  )
+});

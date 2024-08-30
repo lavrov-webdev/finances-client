@@ -1,23 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { ThemeProvider, ToasterComponent, ToasterProvider } from "@gravity-ui/uikit";
+import "@gravity-ui/uikit/styles/fonts.css";
+import "@gravity-ui/uikit/styles/styles.css";
+import { QueryProvider } from "@system/queryClient";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { routeTree } from "./routeTree.gen";
+import './styles.scss';
+import './zodConfig';
 
-import { routeTree } from './routeTree.gen'
-
-// Create a new router instance
-const router = createRouter({ routeTree })
-
-// Register the router instance for type safety
-declare module '@tanstack/react-router' {
+const router = createRouter({ routeTree });
+declare module "@tanstack/react-router" {
   interface Register {
-    router: typeof router
+    router: typeof router;
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root')!);
+
+console.log("hello")
+
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ThemeProvider theme="light">
+      <QueryProvider>
+        <ToasterProvider>
+          <RouterProvider router={router} />
+          <ToasterComponent />
+        </ToasterProvider>
+        <ReactQueryDevtools />
+      </QueryProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 );
