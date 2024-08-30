@@ -10,17 +10,5 @@ plugins: [pluginReact(), pluginSass()],
   html: {
     title: "Finowise",
     favicon: "./src/assets/favicon.ico"
-  },
-  environments: {
-    web: {
-      source: {
-        alias: {
-          "@components": "./src/components",
-          "@system": "./src/system",
-          "@layouts": "./src/layouts",
-          "@modules": "./src/modules",
-        }
-      }
-    }
   }
 });

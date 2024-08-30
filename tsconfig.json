@@ -5,10 +5,13 @@
     "module": "ESNext",
     "jsx": "react-jsx",
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "skipLibCheck": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
     "moduleResolution": "bundler",
+    "useDefineForClassFields": true,
     "paths": {
       "@components/*": ["./src/components/*"],
       "@system/*": ["./src/system/*"],
