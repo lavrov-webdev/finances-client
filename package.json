@@ -14,8 +14,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^1.0.0",
-    "@rsbuild/plugin-react": "^1.0.0",
+    "@rsbuild/core": "1.0.1-rc.0",
+    "@rsbuild/plugin-react": "1.0.1-rc.0",
     "@tanstack/router-cli": "^1.47.0",
     "@tanstack/router-devtools": "^1.48.1",
     "@tanstack/router-plugin": "^1.47.0",
