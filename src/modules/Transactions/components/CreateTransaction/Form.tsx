@@ -40,7 +40,7 @@ export const Form = () => {
                         <FormAmountInput name="amount" />
                     </FormRow>
                     <FormRow label="Дата" required>
-                        <FormDatePicker name="date" />
+                        <FormDatePicker name="date" withNextDayButton />
                     </FormRow>
                     <FormRow label="Конверт" required>
                         <EnvelopeSelector date={form.getValues("date")} />
