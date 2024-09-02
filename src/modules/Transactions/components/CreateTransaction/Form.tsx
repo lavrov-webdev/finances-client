@@ -14,18 +14,22 @@ import dayjs from "dayjs"
 import { DATE_FORMAT } from "@system/consts"
 
 export const Form = () => {
-    const form = useForm<TCreateTransactionDto, null, TCreateTransactionDtoOut>({ 
+    const form = useForm<TCreateTransactionDto, null, TCreateTransactionDtoOut>({
         resolver: zodResolver(CreateTransactionDto),
         defaultValues: {
             date: dayjs().format(DATE_FORMAT)
         }
-     })
+    })
     const createTransactionMutation = useCreateTransaction()
     useErrorNotifier(createTransactionMutation.error as AxiosError, "Ошибка создания транзакции")
     useWatch({ control: form.control, name: "date" })
 
-    const submitHandler = (data: TCreateTransactionDtoOut) => {
-        createTransactionMutation.mutate(data)
+    const submitHandler = async (data: TCreateTransactionDtoOut) => {
+        await createTransactionMutation.mutateAsync(data)
+        form.resetField("amount")
+        form.setValue("comment", "")
+        form.resetField("envelopeId")
+        form.setFocus("amount")
     }
 
     return (

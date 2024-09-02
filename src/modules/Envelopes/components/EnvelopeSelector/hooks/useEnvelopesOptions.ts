@@ -9,7 +9,6 @@ export const useEnvelopesOptions = (envelopes: TGetEnvelopesWithCategoryNameAndS
             text: envelope.category.name,
             content: envelope.category.name
         })
-        console.log({ acc })
         return acc
     }, []), [envelopes])
 }

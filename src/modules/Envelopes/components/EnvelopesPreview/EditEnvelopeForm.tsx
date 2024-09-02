@@ -27,7 +27,6 @@ export const EditEnvelopeForm: FC<Props> = ({ onClose, envelope }) => {
     })
 
     const handleSubmit = (data: TEditEnvelopeDtoOut) => {
-        console.log({ data })
         editEnvelopeMutation.mutate(data)
     }
     return (

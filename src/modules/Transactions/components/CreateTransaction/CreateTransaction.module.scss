@@ -21,6 +21,7 @@
 }
 
 .transactions {
+    overflow-y: auto;
     grid-area: transactions;
 }
 

@@ -21,6 +21,8 @@ export const FormAmountInput: FC<Props> = ({ name, ...rest }) => {
                 return <TextInput
                     {...field}
                     {...rest}
+                    ref={undefined}
+                    controlRef={field.ref}
                     onChange={nope}
                     onUpdate={(value) => {
                         field.onChange(Number(clearNumberString(value)));

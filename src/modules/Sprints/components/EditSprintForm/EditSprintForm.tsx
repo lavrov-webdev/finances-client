@@ -17,10 +17,10 @@ export const EditSprintForm: FC<Props> = ({ sprint }) => {
       ...sprint
     }
   })
-  const su = (data: any) => {
+  const onSubmit = (data: any) => {
     console.log({ data })
   }
-  return <form onSubmit={form.handleSubmit(su)}>
+  return <form onSubmit={form.handleSubmit(onSubmit)}>
     <FormProvider {...form}>
       <FormRow label="Стартовая сумма">
         <FormAmountInput name="startSum" />
