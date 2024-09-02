@@ -7,7 +7,7 @@ import { useForm, useWatch } from "react-hook-form"
 import styles from './CreateTransaction.module.scss'
 import { Button } from "@gravity-ui/uikit"
 import { useCreateTransaction } from "@modules/Transactions/api/hooks/useCreateTransaction"
-import { useErrorNotifier } from "@system/hooks"
+import { useAddSuccessToaster, useErrorNotifier } from "@system/hooks"
 import { AxiosError } from "axios"
 import { zodResolver } from "@hookform/resolvers/zod"
 import dayjs from "dayjs"
@@ -21,15 +21,19 @@ export const Form = () => {
         }
     })
     const createTransactionMutation = useCreateTransaction()
+    useWatch({control: form.control, name: "date"})
     useErrorNotifier(createTransactionMutation.error as AxiosError, "Ошибка создания транзакции")
-    useWatch({ control: form.control, name: "date" })
+    const addToaster = useAddSuccessToaster()
 
     const submitHandler = async (data: TCreateTransactionDtoOut) => {
-        await createTransactionMutation.mutateAsync(data)
-        form.resetField("amount")
-        form.setValue("comment", "")
-        form.resetField("envelopeId")
-        form.setFocus("amount")
+        try {
+            await createTransactionMutation.mutateAsync(data)
+            form.resetField("amount")
+            form.setValue("comment", "")
+            form.resetField("envelopeId")
+            form.setFocus("amount")
+            addToaster("Добавлена новая транзакция")
+        } catch { }
     }
 
     return (
