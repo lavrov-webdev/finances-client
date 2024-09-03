@@ -25,7 +25,7 @@ export const useSprintSummary = (sprint: TGetSprintWithEnvelopesAndTransactionsD
             initialPlannedExpense += envelope.amount
             const envelopeTransactions = envelope.transactions.reduce((acc, transaction) => acc + transaction.amount, 0)
 
-            overspending += Math.min(0, envelope.amount - envelopeTransactions)
+            overspending -= Math.min(0, envelope.amount - envelopeTransactions)
             totalExpenses += envelopeTransactions
         })
 
