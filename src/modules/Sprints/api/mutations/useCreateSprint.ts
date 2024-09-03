@@ -7,21 +7,21 @@ import { getCurrentSprintQueryKey, getSprintQueryKey } from "../queryOptions";
 import { createSprint } from "../requests/createSprint";
 
 export const useCreateSprint = () => {
-    const errorToaster = useAddErrorToaster()
-    const successToaster = useAddSuccessToaster()
-    return useMutation({
-        mutationFn: (sprint: TCreateSprintDto) => createSprint(sprint),
-        onSuccess: () => {
-            successToaster("Спринт создан")
-            queryClient.invalidateQueries({
-                queryKey: getSprintQueryKey()
-            })
-            queryClient.invalidateQueries({
-                queryKey: getCurrentSprintQueryKey()
-            })
-        },
-        onError(error) {
-            errorToaster('Не удалось создать спринт', error as AxiosError)
-        },
-    })
-}
+  const errorToaster = useAddErrorToaster();
+  const successToaster = useAddSuccessToaster();
+  return useMutation({
+    mutationFn: (sprint: TCreateSprintDto) => createSprint(sprint),
+    onSuccess: () => {
+      successToaster("Спринт создан");
+      queryClient.invalidateQueries({
+        queryKey: getSprintQueryKey(),
+      });
+      queryClient.invalidateQueries({
+        queryKey: getCurrentSprintQueryKey(),
+      });
+    },
+    onError(error) {
+      errorToaster("Не удалось создать спринт", error as AxiosError);
+    },
+  });
+};

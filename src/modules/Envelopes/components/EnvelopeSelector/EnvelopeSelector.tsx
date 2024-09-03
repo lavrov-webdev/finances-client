@@ -1,16 +1,16 @@
-import { FormSelector } from '@components/Form';
-import { getEnvelopesByDateQueryOptions } from '@modules/Envelopes/api';
-import { useQuery } from '@tanstack/react-query';
-import { FC } from 'react';
-import { useEnvelopesOptions } from './hooks/useEnvelopesOptions';
+import { FormSelector } from "@components/Form";
+import { getEnvelopesByDateQueryOptions } from "@modules/Envelopes/api";
+import { useQuery } from "@tanstack/react-query";
+import { FC } from "react";
+import { useEnvelopesOptions } from "./hooks/useEnvelopesOptions";
 
 type Props = {
-  date?: string
+  date?: string;
 };
 
 export const EnvelopeSelector: FC<Props> = ({ date }) => {
-  const envelopesState = useQuery(getEnvelopesByDateQueryOptions(date))
-  const options = useEnvelopesOptions(envelopesState.data || [])
+  const envelopesState = useQuery(getEnvelopesByDateQueryOptions(date));
+  const options = useEnvelopesOptions(envelopesState.data || []);
 
   return (
     <FormSelector
@@ -21,5 +21,5 @@ export const EnvelopeSelector: FC<Props> = ({ date }) => {
       isNumberValue
       loading={envelopesState.isLoading}
     />
-  )
+  );
 };

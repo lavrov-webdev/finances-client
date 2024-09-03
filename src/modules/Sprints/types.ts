@@ -7,13 +7,17 @@ import {
 } from "@modules/Envelopes";
 
 export const CreateSprintDto = z.object({
-  startDate: z.string({ required_error: "Введите дату начала" }).transform(v => new Date(v)),
-  endDate: z.string({ required_error: "Введите дату окончания" }).transform(v => new Date(v)),
+  startDate: z
+    .string({ required_error: "Введите дату начала" })
+    .transform((v) => new Date(v)),
+  endDate: z
+    .string({ required_error: "Введите дату окончания" })
+    .transform((v) => new Date(v)),
   startSum: z.coerce.number({ required_error: "Введите начальную сумму" }),
   envelopes: z.array(CreateEnvelopeDto),
 });
 export type TCreateSprintDtoFields = z.input<typeof CreateSprintDto>;
-export type TCreateSprintDto = z.output<typeof CreateEnvelopeDto>
+export type TCreateSprintDto = z.output<typeof CreateEnvelopeDto>;
 
 export const SprintDates = CreateSprintDto.omit({
   envelopes: true,

@@ -1,1 +1,1 @@
-export const ENVELOPES_QUERY_KEY = 'envelopes'
+export const ENVELOPES_QUERY_KEY = "envelopes";

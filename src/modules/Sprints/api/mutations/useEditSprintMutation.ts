@@ -1,15 +1,15 @@
-import { useMutation } from "@tanstack/react-query"
-import { editSprint } from "../requests/editSprint"
-import { queryClient } from "@system/queryClient"
-import { getSprintQueryKey } from "../queryOptions"
+import { useMutation } from "@tanstack/react-query";
+import { editSprint } from "../requests/editSprint";
+import { queryClient } from "@system/queryClient";
+import { getSprintQueryKey } from "../queryOptions";
 
 export const useEditSprintMutation = () => {
   return useMutation({
     mutationFn: editSprint,
     onSuccess() {
-        queryClient.invalidateQueries({
-            queryKey: getSprintQueryKey()
-        })
-    }
-  })
-}
+      queryClient.invalidateQueries({
+        queryKey: getSprintQueryKey(),
+      });
+    },
+  });
+};

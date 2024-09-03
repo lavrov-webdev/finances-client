@@ -5,24 +5,25 @@ import { getSprints } from "../requests/getSprints";
 import { getSprintById } from "../requests/getSprintById";
 import { getCurrentSprint } from "../requests/getCurrentSprint";
 
-export const getSprintQueryKey = (id?: number) => filterUndefined([SPRINTS_QUERY_KEY, id])
-export const getCurrentSprintQueryKey = () => [CURRENT_SPRINT_QUERY_KEY]
+export const getSprintQueryKey = (id?: number) =>
+  filterUndefined([SPRINTS_QUERY_KEY, id]);
+export const getCurrentSprintQueryKey = () => [CURRENT_SPRINT_QUERY_KEY];
 
-
-export const getSprintsQueryOptions = () => queryOptions({
+export const getSprintsQueryOptions = () =>
+  queryOptions({
     queryKey: getSprintQueryKey(),
-    queryFn: getSprints
-})
+    queryFn: getSprints,
+  });
 
-export const getSprintByIdQueryOptions = (id: number) => queryOptions({
+export const getSprintByIdQueryOptions = (id: number) =>
+  queryOptions({
     queryKey: getSprintQueryKey(id),
-    queryFn: (d) => {
-        return getSprintById(id)
-    }
-})
+    queryFn: () => getSprintById(id),
+  });
 
-export const getCurrentSprintQueryOptions = () => queryOptions({
+export const getCurrentSprintQueryOptions = () =>
+  queryOptions({
     queryKey: getCurrentSprintQueryKey(),
     queryFn: getCurrentSprint,
-    staleTime: 1000 * 60
-})
+    staleTime: 1000 * 60,
+  });

@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const AuthDto = z.object({
   email: z.string().email({ message: "Введите корректный email" }),
@@ -17,8 +17,7 @@ export const UserDto = z.object({
 });
 export type TUserDto = z.infer<typeof UserDto>;
 
-
 export enum TAuthFormType {
   signIn = "signIn",
-  signUp = "signUp"
+  signUp = "signUp",
 }

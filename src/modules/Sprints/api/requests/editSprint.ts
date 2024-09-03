@@ -8,9 +8,6 @@ export const editSprint = async ({
   editSprintDto: TEditSprintDtoOutput;
   id: number;
 }) => {
-  const { data } = await appAxios.patch(
-    `/sprints/${id}`,
-    editSprintDto,
-  );
+  const { data } = await appAxios.patch(`/sprints/${id}`, editSprintDto);
   return GetSprintDto.parse(data);
 };

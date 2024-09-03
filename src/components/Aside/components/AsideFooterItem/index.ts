@@ -1,1 +1,1 @@
-export { AsideFooterItem } from './AsideFooterItem'
+export { AsideFooterItem } from "./AsideFooterItem";

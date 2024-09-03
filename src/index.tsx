@@ -1,14 +1,26 @@
-import { ThemeProvider, ToasterComponent, ToasterProvider } from "@gravity-ui/uikit";
+import {
+  ThemeProvider,
+  ToasterComponent,
+  ToasterProvider,
+} from "@gravity-ui/uikit";
 import "@gravity-ui/uikit/styles/fonts.css";
 import "@gravity-ui/uikit/styles/styles.css";
 import { QueryProvider } from "@system/queryClient";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { routeTree } from "./routeTree.gen";
-import './styles.scss';
-import './zodConfig';
+import "./styles.scss";
+import "./zodConfig";
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      NODE_ENV: string;
+    }
+  }
+}
 
 const router = createRouter({ routeTree });
 declare module "@tanstack/react-router" {
@@ -16,7 +28,6 @@ declare module "@tanstack/react-router" {
     router: typeof router;
   }
 }
-
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
