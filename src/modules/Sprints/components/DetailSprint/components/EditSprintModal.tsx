@@ -26,7 +26,7 @@ export const EditSprintModal: FC<Props> = ({ sprintId }) => {
     </Button>
     <Modal open={modal.isOpen} onClose={modal.closeModal}>
       <Card title='Редактировать спринт'>
-        <EditSprintForm sprint={sprintState.data!} />
+        <EditSprintForm sprint={sprintState.data!} modalProps={modal} />
       </Card>
     </Modal>
   </>
