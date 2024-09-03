@@ -1,4 +1,4 @@
-import { atom } from "jotai"
-import { ASIDE_PANEL } from "../types"
+import { atom } from "jotai";
+import { ASIDE_PANEL } from "../types";
 
-export const openedAsidePanelStore = atom<ASIDE_PANEL | null>(null)
+export const openedAsidePanelStore = atom<ASIDE_PANEL | null>(null);

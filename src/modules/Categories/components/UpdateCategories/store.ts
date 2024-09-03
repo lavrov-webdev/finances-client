@@ -1,3 +1,3 @@
 import { atom } from "jotai";
 
-export const categoriesToDeleteAtom = atom<Set<number>>(new Set([]))
+export const categoriesToDeleteAtom = atom<Set<number>>(new Set([]));

@@ -1,1 +1,1 @@
-export * from './queryOptions'
+export * from "./queryOptions";

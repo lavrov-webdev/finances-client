@@ -2,39 +2,38 @@ name: Build and Push
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    
-    - name: Login to Yandex Cloud Container Registry
-      id: login-cr
-      uses: yc-actions/yc-cr-login@v1
-      with:
-        yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Build Dockerfile
-      run: |
-        docker build -t ${{ secrets.YC_CONTAINER_PATH }} --no-cache .
-        docker push ${{ secrets.YC_CONTAINER_PATH }}
+      - name: Login to Yandex Cloud Container Registry
+        id: login-cr
+        uses: yc-actions/yc-cr-login@v1
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
 
-    - name: Deploy Serverless Container
-      id: deploy-sls-container
-      uses: yc-actions/yc-sls-container-deploy@v2
-      with:
-        yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
-        container-name: finances-client
-        folder-id: b1gq1dhshocbcbf2s936
-        revision-service-account-id: aje36i0rahsh8pdtud4p
-        revision-cores: 1
-        revision-memory: 2048Mb
-        revision-core-fraction: 20
-        revision-concurrency: 4
-        revision-image-url: ${{ secrets.YC_CONTAINER_PATH }}
-        revision-execution-timeout: 10
+      - name: Build Dockerfile
+        run: |
+          docker build -t ${{ secrets.YC_CONTAINER_PATH }} --no-cache .
+          docker push ${{ secrets.YC_CONTAINER_PATH }}
+
+      - name: Deploy Serverless Container
+        id: deploy-sls-container
+        uses: yc-actions/yc-sls-container-deploy@v2
+        with:
+          yc-sa-json-credentials: ${{ secrets.YC_SA_JSON_CREDENTIALS }}
+          container-name: finances-client
+          folder-id: b1gq1dhshocbcbf2s936
+          revision-service-account-id: aje36i0rahsh8pdtud4p
+          revision-cores: 1
+          revision-memory: 2048Mb
+          revision-core-fraction: 20
+          revision-concurrency: 4
+          revision-image-url: ${{ secrets.YC_CONTAINER_PATH }}
+          revision-execution-timeout: 10

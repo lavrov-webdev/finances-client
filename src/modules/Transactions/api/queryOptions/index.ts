@@ -4,15 +4,17 @@ import { queryOptions } from "@tanstack/react-query";
 import { getTransactions } from "../requests/getTransactions";
 
 type QueryKeyParams = {
-    id?: number,
-    filters?: {
-        sprintId?: number
-    }
-}
+  id?: number;
+  filters?: {
+    sprintId?: number;
+  };
+};
 
-export const getTransactionsQueryKey = (params?: QueryKeyParams) => filterUndefined([TRANSACTIONS_QUERY_KEY, params?.id, params?.filters])
+export const getTransactionsQueryKey = (params?: QueryKeyParams) =>
+  filterUndefined([TRANSACTIONS_QUERY_KEY, params?.id, params?.filters]);
 
-export const getTransactionsQueryOptions = () => queryOptions({
+export const getTransactionsQueryOptions = () =>
+  queryOptions({
     queryKey: getTransactionsQueryKey(),
-    queryFn: getTransactions
-})
+    queryFn: getTransactions,
+  });

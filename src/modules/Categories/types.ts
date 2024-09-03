@@ -18,7 +18,7 @@ export const GetCategoryDto = CreateCategoryDto.extend({
 });
 export type TGetCategoryDto = z.infer<typeof GetCategoryDto>;
 
-export const GetCategoriesDto = z.array(GetCategoryDto)
+export const GetCategoriesDto = z.array(GetCategoryDto);
 
 export const UpdateCategoriesFormFields = z.object({
   newCategories: CreateCategoryDto.array(),

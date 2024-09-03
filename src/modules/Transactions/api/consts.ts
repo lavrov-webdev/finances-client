@@ -1,1 +1,1 @@
-export const TRANSACTIONS_QUERY_KEY = 'transactions'
+export const TRANSACTIONS_QUERY_KEY = "transactions";

@@ -1,3 +1,3 @@
-export * from './hooks/useUpdateCategories'
-export * from './hooks/useGetCategories'
-export * from './queryOptions'
+export * from "./hooks/useUpdateCategories";
+export * from "./hooks/useGetCategories";
+export * from "./queryOptions";

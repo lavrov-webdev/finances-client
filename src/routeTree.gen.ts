@@ -10,109 +10,111 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as SprintsIndexImport } from './routes/sprints/index'
-import { Route as CategoriesIndexImport } from './routes/categories/index'
-import { Route as TransactionsCreateIndexImport } from './routes/transactions/create/index'
-import { Route as SprintsCurrentIndexImport } from './routes/sprints/current/index'
-import { Route as SprintsCreateIndexImport } from './routes/sprints/create/index'
-import { Route as SprintsSprintIdIndexImport } from './routes/sprints/$sprintId/index'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as IndexImport } from "./routes/index";
+import { Route as SprintsIndexImport } from "./routes/sprints/index";
+import { Route as CategoriesIndexImport } from "./routes/categories/index";
+import { Route as TransactionsCreateIndexImport } from "./routes/transactions/create/index";
+import { Route as SprintsCurrentIndexImport } from "./routes/sprints/current/index";
+import { Route as SprintsCreateIndexImport } from "./routes/sprints/create/index";
+import { Route as SprintsSprintIdIndexImport } from "./routes/sprints/$sprintId/index";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-  path: '/',
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const SprintsIndexRoute = SprintsIndexImport.update({
-  path: '/sprints/',
+  path: "/sprints/",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/sprints/index.lazy').then((d) => d.Route))
+} as any).lazy(() =>
+  import("./routes/sprints/index.lazy").then((d) => d.Route),
+);
 
 const CategoriesIndexRoute = CategoriesIndexImport.update({
-  path: '/categories/',
+  path: "/categories/",
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./routes/categories/index.lazy').then((d) => d.Route),
-)
+  import("./routes/categories/index.lazy").then((d) => d.Route),
+);
 
 const TransactionsCreateIndexRoute = TransactionsCreateIndexImport.update({
-  path: '/transactions/create/',
+  path: "/transactions/create/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const SprintsCurrentIndexRoute = SprintsCurrentIndexImport.update({
-  path: '/sprints/current/',
+  path: "/sprints/current/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const SprintsCreateIndexRoute = SprintsCreateIndexImport.update({
-  path: '/sprints/create/',
+  path: "/sprints/create/",
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./routes/sprints/create/index.lazy').then((d) => d.Route),
-)
+  import("./routes/sprints/create/index.lazy").then((d) => d.Route),
+);
 
 const SprintsSprintIdIndexRoute = SprintsSprintIdIndexImport.update({
-  path: '/sprints/$sprintId/',
+  path: "/sprints/$sprintId/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/categories/': {
-      id: '/categories/'
-      path: '/categories'
-      fullPath: '/categories'
-      preLoaderRoute: typeof CategoriesIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/sprints/': {
-      id: '/sprints/'
-      path: '/sprints'
-      fullPath: '/sprints'
-      preLoaderRoute: typeof SprintsIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/sprints/$sprintId/': {
-      id: '/sprints/$sprintId/'
-      path: '/sprints/$sprintId'
-      fullPath: '/sprints/$sprintId'
-      preLoaderRoute: typeof SprintsSprintIdIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/sprints/create/': {
-      id: '/sprints/create/'
-      path: '/sprints/create'
-      fullPath: '/sprints/create'
-      preLoaderRoute: typeof SprintsCreateIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/sprints/current/': {
-      id: '/sprints/current/'
-      path: '/sprints/current'
-      fullPath: '/sprints/current'
-      preLoaderRoute: typeof SprintsCurrentIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/transactions/create/': {
-      id: '/transactions/create/'
-      path: '/transactions/create'
-      fullPath: '/transactions/create'
-      preLoaderRoute: typeof TransactionsCreateIndexImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/categories/": {
+      id: "/categories/";
+      path: "/categories";
+      fullPath: "/categories";
+      preLoaderRoute: typeof CategoriesIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/sprints/": {
+      id: "/sprints/";
+      path: "/sprints";
+      fullPath: "/sprints";
+      preLoaderRoute: typeof SprintsIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/sprints/$sprintId/": {
+      id: "/sprints/$sprintId/";
+      path: "/sprints/$sprintId";
+      fullPath: "/sprints/$sprintId";
+      preLoaderRoute: typeof SprintsSprintIdIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/sprints/create/": {
+      id: "/sprints/create/";
+      path: "/sprints/create";
+      fullPath: "/sprints/create";
+      preLoaderRoute: typeof SprintsCreateIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/sprints/current/": {
+      id: "/sprints/current/";
+      path: "/sprints/current";
+      fullPath: "/sprints/current";
+      preLoaderRoute: typeof SprintsCurrentIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/transactions/create/": {
+      id: "/transactions/create/";
+      path: "/transactions/create";
+      fullPath: "/transactions/create";
+      preLoaderRoute: typeof TransactionsCreateIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
@@ -126,7 +128,7 @@ export const routeTree = rootRoute.addChildren({
   SprintsCreateIndexRoute,
   SprintsCurrentIndexRoute,
   TransactionsCreateIndexRoute,
-})
+});
 
 /* prettier-ignore-end */
 

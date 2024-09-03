@@ -1,1 +1,1 @@
-export * from './UpdateCategories'
+export * from "./UpdateCategories";

@@ -1,11 +1,10 @@
 import { z } from "zod";
 
-import { GetTransactionDto } from "@modules/Transactions"
+import { GetTransactionDto } from "@modules/Transactions";
 
 export const CreateEnvelopeDto = z.object({
   categoryId: z.number().min(0),
-  amount: z
-    .coerce
+  amount: z.coerce
     .number({
       invalid_type_error: "Введите число",
       required_error: "Введите сумму",
@@ -35,8 +34,14 @@ export const GetEnvelopesWithCategoryNameAndSprintDates = GetEnvelopeDto.extend(
   {
     category: z.object({ name: z.string() }),
     sprint: z.object({
-      startDate: z.string().datetime().transform(v => new Date(v)),
-      endDate: z.string().datetime().transform(v => new Date(v)),
+      startDate: z
+        .string()
+        .datetime()
+        .transform((v) => new Date(v)),
+      endDate: z
+        .string()
+        .datetime()
+        .transform((v) => new Date(v)),
     }),
   },
 );
@@ -46,7 +51,7 @@ export type TGetEnvelopesWithCategoryNameAndSprintDates = z.infer<
 
 export const EditEnvelopeDto = GetEnvelopeDto.pick({
   id: true,
-  amount: true
-})
-export type TEditEnvelopeDtoOut = z.output<typeof EditEnvelopeDto>
-export type TEditEnvelopeDtoInput = z.input<typeof EditEnvelopeDto>
+  amount: true,
+});
+export type TEditEnvelopeDtoOut = z.output<typeof EditEnvelopeDto>;
+export type TEditEnvelopeDtoInput = z.input<typeof EditEnvelopeDto>;

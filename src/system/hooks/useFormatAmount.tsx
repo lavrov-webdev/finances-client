@@ -1,6 +1,6 @@
-import { formatAmount } from "@system/utils/formatAmount"
-import { useMemo } from "react"
+import { formatAmount } from "@system/utils/formatAmount";
+import { useMemo } from "react";
 
 export const useFormatAmount = (value: number | string) => {
-  return useMemo(() => formatAmount(value), [value])
-}
+  return useMemo(() => formatAmount(value), [value]);
+};
