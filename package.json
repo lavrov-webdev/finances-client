@@ -7,7 +7,8 @@
     "build": "rsbuild build",
     "format": "prettier --write .",
     "preview": "rsbuild preview",
-    "generate": "tsr generate"
+    "generate": "tsr generate",
+    "check": "tsc --noEmit && prettier --check ."
   },
   "dependencies": {
     "@gravity-ui/components": "^3.8.0",
