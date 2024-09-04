@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "rsbuild dev --open",
     "build": "rsbuild build",
-    "format": "prettier --write .",
+    "format": "prettier --write ./src",
     "preview": "rsbuild preview",
-    "generate": "tsr generate"
+    "generate": "tsr generate",
+    "check": "tsc --noEmit && prettier --check ./src"
   },
   "dependencies": {
     "@gravity-ui/components": "^3.8.0",
